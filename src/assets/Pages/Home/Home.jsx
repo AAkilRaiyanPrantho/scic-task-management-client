@@ -3,6 +3,9 @@ import Banner from "../../../Components/Banner/Banner";
 import Headings from "../../../Components/Headings/Headings";
 import { useContext } from "react";
 import { AuthContext } from "../../../Components/AuthProviders/AuthProvider";
+import ContactUs from "../ContactUs/ContactUs";
+import AboutUs from "../AboutUs/AboutUs";
+
 
 
 const Home = () => {
@@ -24,9 +27,11 @@ const Home = () => {
             </div>
             <div id="about">
             <Headings mainHeading={'About Us'} subHeading={'What do we serve?'}></Headings>
+            <AboutUs></AboutUs>
             </div>
             <div id="contact">
             <Headings mainHeading={'Contact Us'} subHeading={'Stay connected with us'}></Headings>
+            <ContactUs></ContactUs>
             </div>
         </div>
     );
