@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -41,7 +42,7 @@ const Banner = () => {
                 <h1 className="mb-5 text-5xl font-bold italic text-yellow-100">
                   Organize your chaos, manage your tasks
                 </h1>
-                <button className="btn btn-outline btn-success">Explore More</button>
+                <Link to={'/dashboard'}><button className="btn btn-outline btn-success">Explore More</button></Link>
               </div>
             </div>
           </div>
@@ -61,7 +62,7 @@ const Banner = () => {
                 <h1 className="mb-5 text-5xl font-bold italic text-yellow-100">
                   Turn your to-do list into a ta-da list
                 </h1>
-                <button className="btn btn-outline btn-success">Explore More</button>
+                <Link to={'/dashboard'}><button className="btn btn-outline btn-success">Explore More</button></Link>
               </div>
             </div>
           </div>
@@ -82,7 +83,7 @@ const Banner = () => {
                 <h1 className="mb-5 text-5xl font-bold italic text-yellow-100">
                   One task at a time, one goal at a time, one day at a time
                 </h1>
-                <button className="btn btn-outline btn-success">Explore More</button>
+                <Link to={'/dashboard'}><button className="btn btn-outline btn-success">Explore More</button></Link>
               </div>
             </div>
           </div>
