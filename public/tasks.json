@@ -1,0 +1,37 @@
+[
+    {
+      "title": "Design Homepage",
+      "description": "Create a visually appealing design for the homepage of the website.",
+      "deadline": "2023-12-15",
+      "priority": "High",
+      "status": "To Do"
+    },
+    {
+      "title": "Implement User Authentication",
+      "description": "Set up a secure user authentication system for the website.",
+      "deadline": "2023-12-10",
+      "priority": "Moderate",
+      "status": "On Going"
+    },
+    {
+      "title": "Bug Fixing - Mobile View",
+      "description": "Address and fix any bugs related to the website's mobile view.",
+      "deadline": "2023-12-18",
+      "priority": "Moderate",
+      "status": "To Do"
+    },
+    {
+      "title": "Write API Documentation",
+      "description": "Document the API endpoints and functionalities for developers.",
+      "deadline": "2023-12-20",
+      "priority": "Low",
+      "status": "On Going"
+    },
+    {
+      "title": "Deploy to Production",
+      "description": "Prepare and deploy the task management website to the production environment.",
+      "deadline": "2023-12-25",
+      "priority": "High",
+      "status": "To Do"
+    }
+  ]
