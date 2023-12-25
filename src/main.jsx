@@ -15,6 +15,7 @@ import SignIn from './assets/Pages/SignIn/SignIn';
 import PrivateRoute from './Routes/PrivateRoute';
 import Dashboard from './assets/Layouts/Dashboard';
 import CreateTasks from './assets/Pages/CreateTasks/CreateTasks';
+import AllTasks from './assets/Pages/AllTasks/AllTasks';
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'createTask',
         element: <PrivateRoute><CreateTasks></CreateTasks> </PrivateRoute>
+      },
+      {
+        path: 'allTasks',
+        element: <PrivateRoute><AllTasks></AllTasks></PrivateRoute>
       }
     ]
   }
