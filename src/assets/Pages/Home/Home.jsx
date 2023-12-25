@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Components/AuthProviders/AuthProvider";
 import ContactUs from "../ContactUs/ContactUs";
 import AboutUs from "../AboutUs/AboutUs";
+import Clients from "../Clients/Clients";
 
 
 
@@ -22,8 +23,9 @@ const Home = () => {
                 <button className="btn btn-accent btn-outline px-8"><Link to={'/dashboard'}>Register</Link></button></div></>
             }
             
-            <div id="audiences">
+            <div id="audiences" className="flex flex-col items-center">
             <Headings mainHeading={'our audience'} subHeading={'Who do we serve?'}></Headings>
+             <Clients></Clients>
             </div>
             <div id="about">
             <Headings mainHeading={'About Us'} subHeading={'What do we serve?'}></Headings>
