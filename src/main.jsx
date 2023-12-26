@@ -49,7 +49,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'allTasks',
-        element: <PrivateRoute><AllTasks></AllTasks></PrivateRoute>
+        element: <PrivateRoute><AllTasks></AllTasks></PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/tasks')
       }
     ]
   }
