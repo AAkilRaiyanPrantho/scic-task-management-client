@@ -1,22 +1,45 @@
-import { useState } from "react";
-// import { useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
+// import { useState } from "react";
+import { useForm } from "react-hook-form";
+// import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import Swal from 'sweetalert2'
+
 const CreateTasks = () => {
-//   const {
-//     register,
-//     handleSubmit,
-//     watch,
-//     formState: { errors },
-//   } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-//   const onSubmit = (data) => {
-//     console.log(data);
-//   };
+  const onSubmit = (data) => {
+    console.log(data);
 
-  const [selectedDate, setSelectedDate] = useState(null);
+    // Sending new task data to the server
+    fetch('http://localhost:5000/tasks', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if(data.insertedId){
+        Swal.fire({
+          title: 'Congratulations',
+          text: 'Data Entry Successful!',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+
+      }
+    })
+  };
+
+//   const [selectedDate, setSelectedDate] = useState(null);
   return (
     <div className="hero">
   <div className="hero-content flex-col">
@@ -25,7 +48,7 @@ const CreateTasks = () => {
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
               <form
-                // onSubmit={handleCreateAssignments}
+                onSubmit={handleSubmit(onSubmit)}
                 className="card-body w-96 backdrop-blur-lg"
               >
                 <div className="form-control">
@@ -35,10 +58,11 @@ const CreateTasks = () => {
                   <input
                     type="text"
                     name="title"
+                    {...register("title", { required: true })}
                     placeholder="Task Name"
                     className="input input-bordered"
-                    required
                   />
+                  {errors.title && <span className="text-red-700">Title field is required</span>}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -47,18 +71,20 @@ const CreateTasks = () => {
                   <input
                     type="text"
                     name="description"
+                    {...register("description", { required: true })}
                     placeholder="Task Description"
                     className="input input-bordered"
-                    required
                   />
+                  {errors.description && <span className="text-red-700">Description field is required</span>}
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Task Priority Level</span>
                   </label>
                   <select
-                    id="taskPriorityLevel"
-                    name="taskPriorityLevel"
+                    id="priority"
+                    name="priority"
+                    {...register("priority")}
                     className="p-4 border-2 rounded-lg"
                     required
                   >
@@ -73,8 +99,9 @@ const CreateTasks = () => {
                     <span className="label-text">Task Status</span>
                   </label>
                   <select
-                    id="taskStatus"
-                    name="taskStatus"
+                    id="status"
+                    name="status"
+                    {...register("status")}
                     className="p-4 border-2 rounded-lg"
                     required
                   >
@@ -89,14 +116,15 @@ const CreateTasks = () => {
                   <label className="label">
                     <span className="label-text">Task Deadline</span>
                   </label>
-                  <DatePicker name="deadline" className="input input-bordered w-full" selected={selectedDate} onChange={(date) => setSelectedDate(date)} />
-                  {/* <input
-                    type="text"
-                    name="dueDate"
-                    placeholder="Assignment Due Date"
+                  {/* <DatePicker id="deadline" name="deadline" value={selectedDate} {...register("deadline")} className="input input-bordered w-full" selected={selectedDate} onChange={(date) => setSelectedDate(date)} /> */}
+                  <input
+                    type="date"
+                    name="deadline"
+                    {...register("deadline")}
+                    placeholder="Task Deadline"
                     className="input input-bordered"
                     required
-                  /> */}
+                  />
                 </div>
 
                 <div className="form-control mt-6">
