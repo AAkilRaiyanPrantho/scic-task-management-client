@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Components/AuthProviders/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const AllTask = ( {task} ) => {
     const{_id, title, description, deadline, priority, status} = task;
@@ -59,7 +60,7 @@ return (
 <p>Deadline: <span className="font-bold">{deadline}</span></p>
 <div className="card-actions justify-end">
   <button onClick={() => handleDelete(_id)} className="btn btn-error">Delete</button>
-  <button className="btn btn-primary">Update</button>
+  <button className="btn btn-primary"><Link to={`/dashboard/update/${_id}`}>Update</Link></button>
 </div>
 </div>
 </div>

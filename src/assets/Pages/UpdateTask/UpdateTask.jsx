@@ -1,47 +1,53 @@
 // import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 // import DatePicker from "react-datepicker";
 
 // import "react-datepicker/dist/react-datepicker.css";
 
 import Swal from 'sweetalert2'
 
-const CreateTasks = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+const UpdateTask = () => {
+    const updates = useLoaderData();
+    const {_id, title, description} = updates;
+    console.log(updates);
 
-    // Sending new task data to the server
-    fetch('http://localhost:5000/tasks', {
-        method: 'POST',
-        headers: {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();
+
+      const onSubmit = (data) => {
+        console.log(data);
+    
+        // Sending updated assignment to the server
+        fetch(`http://localhost:5000/tasks/${_id}`,{
+          method: 'PUT',
+          headers: {
             'content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.insertedId){
-        Swal.fire({
-          title: 'Congratulations',
-          text: 'Data Entry Successful!',
-          icon: 'success',
-          confirmButtonText: 'Cool'
+          },
+          body: JSON.stringify(data)
         })
-
-      }
-    })
-  };
-
-//   const [selectedDate, setSelectedDate] = useState(null);
-  return (
-    <div className="hero">
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          if(data.modifiedCount > 0){
+            Swal.fire({
+              title: 'Congratulations',
+              text: 'Task Update Successful!',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            })
+    
+          }
+        })
+      };
+    
+      
+    return (
+        <div className="hero">
   <div className="hero-content flex-col">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Create Your Task</h1>
@@ -58,6 +64,7 @@ const CreateTasks = () => {
                   <input
                     type="text"
                     name="title"
+                    defaultValue={title}
                     {...register("title", { required: true })}
                     placeholder="Task Name"
                     className="input input-bordered"
@@ -71,6 +78,7 @@ const CreateTasks = () => {
                   <input
                     type="text"
                     name="description"
+                    defaultValue={description}
                     {...register("description", { required: true })}
                     placeholder="Task Description"
                     className="input input-bordered"
@@ -129,7 +137,7 @@ const CreateTasks = () => {
 
                 <div className="form-control mt-6">
                   <button className="btn outline outline-[#ee4747] text-[#ee4747]">
-                    Add Task
+                    Update Task
                   </button>
                 </div>
               </form>
@@ -139,7 +147,7 @@ const CreateTasks = () => {
             </div>
   </div>
 </div>
-  );
+    );
 };
 
-export default CreateTasks;
+export default UpdateTask;
