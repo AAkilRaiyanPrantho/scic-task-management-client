@@ -28,7 +28,7 @@ const handleDelete = _id => {
         
         console.log('delete confirmed')
 
-        fetch(`http://localhost:5000/tasks/${_id}`,{
+        fetch(`https://scic-task-8-task-management-server.vercel.app/tasks/${_id}`,{
           method: 'DELETE'
         })
         .then(res => res.json())

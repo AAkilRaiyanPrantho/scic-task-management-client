@@ -23,7 +23,7 @@ const UpdateTask = () => {
         console.log(data);
     
         // Sending updated assignment to the server
-        fetch(`http://localhost:5000/tasks/${_id}`,{
+        fetch(`https://scic-task-8-task-management-server.vercel.app/tasks/${_id}`,{
           method: 'PUT',
           headers: {
             'content-type': 'application/json'
