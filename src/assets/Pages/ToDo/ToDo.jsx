@@ -14,10 +14,10 @@ const ToDo = ( {todo} ) => {
 <p>Priority: <span className="font-bold">{priority}</span></p>
 <p>Status: <span className="font-bold">{status}</span></p>
 <p>Deadline: <span className="font-bold">{deadline}</span></p>
-<div className="card-actions justify-end">
+{/* <div className="card-actions justify-end">
 <button className="btn btn-error">Delete</button>
   <button className="btn btn-primary">Update</button>
-</div>
+</div> */}
 </div>
 </div>
     </div>
