@@ -23,6 +23,8 @@ const SignIn = () => {
         const user = result.user;
         console.log(user);
         notify1();
+        // Navigate After Sign In
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         console.log("error", error.message);
@@ -56,6 +58,8 @@ const SignIn = () => {
         if (result.user.emailVerified) {
           setSignInSuccess("Sign In Successful");
           notify1();
+          // Navigate After Sign In
+        navigate(location?.state ? location.state : "/");
         } else {
           notify3();
         }
@@ -70,14 +74,8 @@ const SignIn = () => {
   const notify2 = () => toast(signInError);
   console.log(signInError);
 
-  const notify1 = () =>{
-    toast("Sign In Successful!!!", {
-    autoClose: 3000,
-    onChange: () => {
-        // Navigate After Sign In
-        navigate(location?.state ? location.state : "/");
-    },
-  });} 
+  const notify1 = () =>
+    toast("Sign In Successful!!!");
 
   const notify3 = () => toast("Please Verify Your Email!!!");
 
