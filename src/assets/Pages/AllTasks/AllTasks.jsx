@@ -25,7 +25,7 @@ const AllTasks = () => {
   return (
     <div>
       <div>
-      <h1 className="text-center font-bold text-4xl">All Tasks</h1>
+      <h1 className="text-center font-bold text-4xl text-orange-200 underline uppercase">All Tasks</h1>
       <div className="grid grid-cols-1 justify-center items-center lg:grid-cols-2 p-4 lg:p-10 lg:gap-10">
         {
           tasks.map( (task) => <AllTask key={task._id} task={task}></AllTask>
@@ -34,7 +34,7 @@ const AllTasks = () => {
       </div>
       </div>
       <div>
-      <h1 className="text-center font-bold text-4xl">Tasks To Do</h1>
+      <h1 className="text-center font-bold text-4xl text-orange-200 underline uppercase">Tasks To Do</h1>
       <div className="grid grid-cols-1 justify-center items-center  lg:grid-cols-2 p-4 lg:p-10 lg:gap-10">
       {
         todos.map( (todo) => <ToDo key={todo._id} todo={todo}></ToDo>)
@@ -43,7 +43,7 @@ const AllTasks = () => {
 
       </div>
       <div>
-      <h1 className="text-center font-bold text-4xl">On Going Tasks</h1>
+      <h1 className="text-center font-bold text-4xl text-orange-200 underline uppercase">On Going Tasks</h1>
       <div className="grid grid-cols-1 justify-center items-center  lg:grid-cols-2 p-4 lg:p-10 lg:gap-10">
       {
         onGoings.map( (onGoing) => <OnGoing key={onGoing._id} onGoing={onGoing}></OnGoing> )
@@ -52,7 +52,7 @@ const AllTasks = () => {
 
       </div>
       <div>
-      <h1 className="text-center font-bold text-4xl">Completed Tasks</h1>
+      <h1 className="text-center font-bold text-4xl text-orange-200 underline uppercase">Completed Tasks</h1>
       <div className="grid grid-cols-1 justify-center items-center  lg:grid-cols-2 p-4 lg:p-10 lg:gap-10">
         {
           completeds.map( (completed) => <Completed key={completed._id} completed={completed}></Completed> )
