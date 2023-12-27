@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
 
@@ -8,32 +7,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-
-
 import { Helmet } from "react-helmet";
 import auth from "../../../firebase/firebase.config";
 import { AuthContext } from "../../../Components/AuthProviders/AuthProvider";
 
-
-
 const SignIn = () => {
-
-  
+  const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
 
   const handleGoogleSignIn = () => {
     console.log("Google Button Working");
-    signInWithPopup(auth,provider)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-      notify1();
-    })
-    .catch(error => {
-      console.log('error',error.message);
-      notify2();
-    })
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        notify1();
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+        notify2();
+      });
   };
 
   const [signInError, setSignInError] = useState("");
@@ -42,6 +36,8 @@ const SignIn = () => {
 
   const authInfo = useContext(AuthContext);
   const { signInUser } = authInfo;
+  const location = useLocation();
+  console.log(location);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -60,7 +56,6 @@ const SignIn = () => {
         if (result.user.emailVerified) {
           setSignInSuccess("Sign In Successful");
           notify1();
-          <Navigate to="/dashboard"></Navigate>
         } else {
           notify3();
         }
@@ -75,7 +70,14 @@ const SignIn = () => {
   const notify2 = () => toast(signInError);
   console.log(signInError);
 
-  const notify1 = () => toast("Sign In Successful!!!");
+  const notify1 = () =>{
+    toast("Sign In Successful!!!", {
+    autoClose: 3000,
+    onChange: () => {
+        // Navigate After Sign In
+        navigate(location?.state ? location.state : "/");
+    },
+  });} 
 
   const notify3 = () => toast("Please Verify Your Email!!!");
 
@@ -92,7 +94,10 @@ const SignIn = () => {
             </h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSignIn} className="card-body w-96 backdrop-blur-lg">
+            <form
+              onSubmit={handleSignIn}
+              className="card-body w-96 backdrop-blur-lg"
+            >
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -134,7 +139,7 @@ const SignIn = () => {
                 <button className="btn outline outline-[#ee4747] text-[#ee4747]">
                   Sign In
                 </button>
-                <ToastContainer position="top-right"  />
+                <ToastContainer position="top-right" />
               </div>
             </form>
             {signInError && <p className="text-red-800">{signInError}</p>}

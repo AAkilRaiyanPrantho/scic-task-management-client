@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useContext, useState } from "react";
 
@@ -13,7 +13,9 @@ const SignUp = () => {
 
   const [signUpSuccess, setSignUpSuccess] = useState("");
 
-  const authInfo = useContext(AuthContext)
+  const authInfo = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const { createUser } = authInfo;
 
@@ -51,6 +53,7 @@ const SignUp = () => {
         setSignUpSuccess("Sign Up Successful");
         notify1();
         e.target.reset();
+        navigate('/dashboard');
 
         // Updating Profile
         updateProfile(result.user, {
